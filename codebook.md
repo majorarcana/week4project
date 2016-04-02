@@ -3,7 +3,6 @@
 ##Data Source
 
 * https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-
 ..* features.txt
 ..* activity_labels.txt
 ..* /train/X_train.txt
