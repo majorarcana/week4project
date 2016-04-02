@@ -1,5 +1,3 @@
-# 1. Merges the training and the test sets to create one data set.
-
 train_set <- read.table("./dataset/train/X_train.txt")
 train_label <- read.table("./dataset/train/y_train.txt")
 train_subject <- read.table("./dataset/train/subject_train.txt")
@@ -10,8 +8,6 @@ joined_set <- rbind(train_set, test_set)
 joined_label <- rbind(train_label, test_label)
 joined_subject <- rbind(train_subject, test_subject)
 
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
-
 features <- read.table("./dataset/features.txt")
 mean_standard <- grep("mean\\(\\)|std\\(\\)", features[, 2])
 joined_set <- joined_set[, mean_standard]
@@ -20,27 +16,21 @@ names(joined_set) <- gsub("mean", "Mean", names(joined_set))
 names(joined_set) <- gsub("std", "Std", names(joined_set))
 names(joined_set) <- gsub("-", "", names(joined_set)
 
-# 3. Uses descriptive activity names to name the activities in the data set
-
 activity <- read.table("./dataset/activity_labels.txt")
 activity[, 2] <- tolower(gsub("_", "", activity[, 2]))
 substr(activity[2, 2], 8, 8) <- toupper(substr(activity[2, 2], 8, 8))
 substr(activity[3, 2], 8, 8) <- toupper(substr(activity[3, 2], 8, 8))
 activity_label <- activity[joined_label[, 1], 2]
 joined_label[, 1] <- activity_label
+
 names(joined_label) <- "activity"
-
-# 4. Appropriately labels the data set with descriptive variable names.
-
 names(joined_subject) <- "subject"
+
 clean_data <- cbind(joined_subject, joined_label, joined_set)
 write.table(clean_data, "merged_data.txt")
 
-#5. From the data set in step 4, creates a second, independent tidy data set with the average 
-# of each variable for each activity and each subject.
-
 subject_length <- length(table(joined_subject))
-activity_length <- dim(activity)[1] # 6
+activity_length <- dim(activity)[1] 
 column_length <- dim(clean_data)[2]
 result <- matrix(NA, nrow=subject_length*activity_length, ncol=column_length) 
 result <- as.data.frame(result)
@@ -57,5 +47,6 @@ for(i in 1:subject_length) {
     }
 }
 write.table(result, "data_with_means.txt")
+
 
 
