@@ -3,14 +3,14 @@
 ##Data Source
 
 * https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-..* features.txt
-..* activity_labels.txt
-..* /train/X_train.txt
-..* /train/y_train.txt
-..* /train/subject_train.txt
-..* /test/X_test.txt
-..* /test/y_test.txt
-..* /test/subject_test.txt
+  * features.txt
+  * activity_labels.txt
+  * /train/X_train.txt
+  * /train/y_train.txt
+  * /train/subject_train.txt
+  * /test/X_test.txt
+  * /test/y_test.txt
+  * /test/subject_test.txt
 
 ##Transformations
 
